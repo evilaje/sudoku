@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SudokuLogica" default="jar" basedir=".">
+    <property file="nbproject/project.properties"/>
+    <target name="clean"><delete dir="build"/><delete dir="dist"/></target>
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" source="1.8" target="1.8" encoding="UTF-8" includeantruntime="false"/>
+    </target>
+    <target name="jar" depends="compile">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/SudokuLogica.jar" basedir="build/classes">
+            <manifest><attribute name="Main-Class" value="sudoku.Main"/></manifest>
+        </jar>
+    </target>
+    <target name="run" depends="compile"><java classname="sudoku.Main" fork="true"><classpath path="build/classes"/></java></target>
+    <target name="test" depends="compile">
+        <mkdir dir="build/test"/>
+        <javac srcdir="test" destdir="build/test" source="1.8" target="1.8" encoding="UTF-8" includeantruntime="false"><classpath path="build/classes"/></javac>
+        <java classname="sudoku.PruebasLogica" fork="true" failonerror="true"><classpath path="build/classes;build/test"/></java>
+    </target>
+</project>
